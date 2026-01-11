@@ -21,9 +21,10 @@ class MCP_ChatBot:
     async def process_query(self, query):
         messages = [{'role':'user', 'content':query}]
         response = self.anthropic.messages.create(max_tokens = 2024,
-                                      model = 'claude-3-7-sonnet-20250219', 
+                                      model = 'claude-sonnet-4-5', 
                                       tools = self.available_tools, # tools exposed to the LLM
-                                      messages = messages)
+                                      messages = messages,
+                                      )
         process_query = True
         while process_query:
             assistant_content = []
@@ -56,7 +57,7 @@ class MCP_ChatBot:
                                       ]
                                     })
                     response = self.anthropic.messages.create(max_tokens = 2024,
-                                      model = 'claude-3-7-sonnet-20250219', 
+                                      model = 'claude-sonnet-4-5', 
                                       tools = self.available_tools,
                                       messages = messages) 
 
